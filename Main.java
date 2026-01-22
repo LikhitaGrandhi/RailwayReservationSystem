@@ -1,17 +1,18 @@
 import java.util.Scanner;
-import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        // seats = 2, RAC = 1, Waiting = 1 (you can change)
+        // Create system (same as before)
         ReservationSystem reservationSystem =
                 new ReservationSystem(2, 1, 1);
 
         while (true) {
-            System.out.println("\n====== Railway Ticket Reservation System ======");
+
+            System.out.println("\n===== Railway Ticket Reservation System =====");
             System.out.println("1. Book Ticket");
             System.out.println("2. Cancel Ticket");
             System.out.println("3. View Bookings");
@@ -24,13 +25,14 @@ public class Main {
 
                 case 1:
                     System.out.print("Enter Passenger Name: ");
-                    String name = sc.next();
+                    sc.nextLine(); // consume newline
+                    String name = sc.nextLine();
 
                     System.out.print("Enter Passenger Age: ");
                     int age = sc.nextInt();
 
-                    Passenger passenger = new Passenger(name, age);
-                    reservationSystem.bookTicket(passenger);
+                    Passenger p = new Passenger(name, age);
+                    reservationSystem.bookTicket(p);
                     break;
 
                 case 2:
@@ -44,11 +46,12 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.println("Thank you for using the system!");
-                    System.exit(0);
+                    System.out.println("Thank you!");
+                    sc.close();
+                    return;
 
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    System.out.println("Invalid choice");
             }
         }
     }
